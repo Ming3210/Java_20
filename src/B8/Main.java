@@ -32,7 +32,12 @@ public class Main {
         }
 
         map.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue))
+                .sorted(new Comparator<Map.Entry<String, Integer>>() {
+                    @Override
+                    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                        return o2.getValue() - o1.getValue();
+                    }
+                })
                 .forEach(entry ->
                         System.out.println("Chuyên ngành: " + entry.getKey() + " | Số lượng: " + entry.getValue())
                 );
