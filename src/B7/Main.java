@@ -1,5 +1,6 @@
 package B7;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
         );
         employees.stream().filter(e ->{
             return e.getSalary() > 2000 && e.getAge() > 25 && e.getDepartment().equals("IT");
-        }).forEach(e -> System.out.println(e.toString()));
+        }).sorted(Comparator.comparing(Employee::getSalary).reversed().thenComparing(Employee::getName)).forEach(e -> System.out.println(e.toString()));
 
     }
 }
