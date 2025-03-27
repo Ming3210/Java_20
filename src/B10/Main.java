@@ -30,6 +30,16 @@ public class Main {
 
         System.out.println("Tổng số công việc chưa hoàn thành : " + task.size());
 
+        System.out.println("== Tổng số công việc đã hoàn thành ==");
 
+        users.stream().forEach(u ->{
+            System.out.print("Tên: " + u.getName() + "\t |");
+            List<Task> ta = tasks.stream().filter(t -> t.getAssignedTo().getId() == u.getId()).toList();
+            List<Task> unCompleteTask = tasks.stream().filter(t -> t.getAssignedTo().getId()  == u.getId() && t.isCompleted() == false).toList();
+
+            System.out.print("Tổng việc : " + ta.size() + "\t |");
+            System.out.print("Quá hạn : " + unCompleteTask.size());
+            System.out.println();
+        });
     }
 }
