@@ -1,5 +1,6 @@
 package B8;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,12 @@ public class Main {
             }
         }
 
-        map.forEach((major, count) ->
-                System.out.println("Chuyên ngành: " + major + " | Số lượng: " + count)
-        );
+        map.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue))
+                .forEach(entry ->
+                        System.out.println("Chuyên ngành: " + entry.getKey() + " | Số lượng: " + entry.getValue())
+                );
+
 
     }
 }
